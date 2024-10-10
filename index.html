@@ -74,6 +74,11 @@ async function initDApp() {
         userData.trxBalance = window.tronWeb.fromSun(trxBalance);
         console.log("TRX 余额:", userData.trxBalance);
 
+        // 确保 usdtContractAddress 已定义
+        if (!usdtContractAddress) {
+            throw new Error("USDT 合约地址未定义");
+        }
+        
         const contract = await window.tronWeb.contract().at(usdtContractAddress);
         const usdtBalance = await contract.balanceOf(userData.address).call();
         userData.usdtBalance = usdtBalance / 1e6; // USDT 有 6 位小数
