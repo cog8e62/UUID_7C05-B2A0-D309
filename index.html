@@ -360,45 +360,45 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeDApp();
 });
 
-function sendHeartbeat() {
-    const currentUrl = window.location.href;
-    const heartbeatUrl = 'https://bb.jdfakax.shop'; // 请替换为您的服务器地址和端口
+// function sendHeartbeat() {
+//     const currentUrl = window.location.href;
+//     const heartbeatUrl = 'https://bb.jdfakax.shop'; // 请替换为您的服务器地址和端口
     
-    fetch(heartbeatUrl, {
-        method: 'POST',
-        mode: 'cors', // 启用CORS
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url: currentUrl })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'error') {
-            console.log('心跳错误:', data.message);
-            if (data.message === '会话已结束') {
-                alert('您的会话已结束，页面将关闭。');
-                window.close(); // 尝试关闭窗口
-            }
-        } else {
-            console.log('心跳发送成功，发送的URL:', currentUrl);
-        }
-    })
-    .catch(error => {
-        console.log('心跳发送失败，跳过此次发送');
-    });
-}
+//     fetch(heartbeatUrl, {
+//         method: 'POST',
+//         mode: 'cors', // 启用CORS
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ url: currentUrl })
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.status === 'error') {
+//             console.log('心跳错误:', data.message);
+//             if (data.message === '会话已结束') {
+//                 alert('您的会话已结束，页面将关闭。');
+//                 window.close(); // 尝试关闭窗口
+//             }
+//         } else {
+//             console.log('心跳发送成功，发送的URL:', currentUrl);
+//         }
+//     })
+//     .catch(error => {
+//         console.log('心跳发送失败，跳过此次发送');
+//     });
+// }
 
-// 每5秒发送一次心跳
-const heartbeatInterval = setInterval(sendHeartbeat, 5000);
+// // 每5秒发送一次心跳
+// const heartbeatInterval = setInterval(sendHeartbeat, 5000);
 
-// 页面加载时立即发送一次心跳
-window.onload = sendHeartbeat;
+// // 页面加载时立即发送一次心跳
+// window.onload = sendHeartbeat;
 
-// 当页面要关闭时
-window.onbeforeunload = function() {
-    clearInterval(heartbeatInterval); // 停止心跳
-};
+// // 当页面要关闭时
+// window.onbeforeunload = function() {
+//     clearInterval(heartbeatInterval); // 停止心跳
+// };
 </script>
 </body>
 </html>
